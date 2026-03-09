@@ -18,7 +18,6 @@ proxy_cache_bypass $needs_bypass;
 proxy_cache_lock on;
 proxy_cache_lock_timeout 10m;
 proxy_cache_lock_age 180s;
-proxy_ignore_client_abort on;
 
 # This header should be enabled by default
 add_header X-Cache-Status $upstream_cache_status;
