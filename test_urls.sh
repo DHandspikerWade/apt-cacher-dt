@@ -17,13 +17,19 @@ function test_request() {
     return $RET
 }
 
-# Docker passthrough 
-test_request http://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
 # Standard debian
 test_request http://deb.debian.org/debian/pool/main/n/nano/nano-tiny_5.4-2+deb11u3_amd64.deb
 # security debian
 test_request http://security.debian.org/debian-security/pool/main/f/fish/fish_3.1.2-3+deb11u1_amd64.deb
 # Debian mirror as an "unknown repo"
 test_request http://mirror.csclub.uwaterloo.ca/debian/pool/main/v/vim/vim_9.1.2141-1_amd64.deb
-# Proxmox and Release file 
-test_request http://download.proxmox.com/debian/ceph-squid/dists/trixie/InRelease
+# Ubuntu mirror
+test_request http://archive.ubuntu.com/ubuntu/pool/main/n/nano/nano_8.7.1-1_amd64.deb
+# Release file 
+test_request http://deb.debian.org/debian/dists/stable/Release
+test_request http://deb.debian.org/debian/dists/stable/InRelease
+# Docker passthrough 
+test_request http://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
+# VSCode passthrough
+test_request http://packages.microsoft.com/repos/code/pool/main/c/code/code_1.100.0-1746623151_amd64.deb
+
