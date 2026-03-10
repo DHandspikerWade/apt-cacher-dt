@@ -10,6 +10,7 @@ RUN \
 VOLUME /usr/share/nginx/cache
 COPY default.conf stub-*.inc /etc/nginx/conf.d/
 COPY haproxy.cfg /etc/haproxy/
+COPY *.html /usr/share/nginx/html/
 COPY run.sh /
 
 RUN chmod +x /run.sh
