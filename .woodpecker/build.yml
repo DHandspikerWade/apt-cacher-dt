@@ -1,0 +1,18 @@
+variables:
+  - &build_image woodpeckerci/plugin-docker-buildx:5.2.2
+  - &built_image_tag ${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}
+  - &step_events [push, manual]
+
+steps:
+- name: Build Image
+  image: *build_image
+  settings:
+    repo: registry.ci.spikedhand.com/ci/apt-cacher-dt
+    dockerfile: Dockerfile
+    tags: 
+      - *built_image_tag
+    dry_run: false
+    platforms: 
+      - linux/amd64
+  when:
+    event: *step_events
