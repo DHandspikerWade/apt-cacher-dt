@@ -2,12 +2,13 @@
 <html>
     <head>
         <!--
-            auto-apt-proxy seems to check the page title to detect a working cache
+            auto-apt-proxy uses the page title to detect a working cache
             https://github.com/terceiro/auto-apt-proxy/blob/f3b86d8727cbf4968130f4fae2651be3480269ad/auto-apt-proxy#L135
         -->
         <title>Apt-cacher</title>
     </head>
     <body>
-        Configure APT to use this cache by adding <code>Acquire::http::Proxy "http://DOMAIN:3142";</code> in /etc/apt/apt.conf.d/apt-proxy
+        <p>Configure APT to use this cache by adding <code>Acquire::http::Proxy "http://DOMAIN:3142";</code> in /etc/apt/apt.conf.d/apt-proxy</p>
+        <p><a href="/stats">Admin Stats</a></p>
     </body>
 </html>
