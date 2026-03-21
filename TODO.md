@@ -1,5 +1,3 @@
 TODO:
-* SNI doesn't work
-* Ubuntu needs to be added
-* Pull mirror lists to handle? 
 * Fix IPs in nginx logs
+* Add CI job to smoketest image then properly test with APT using debian and ubuntu containers

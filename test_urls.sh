@@ -28,8 +28,9 @@ test_request http://archive.ubuntu.com/ubuntu/pool/main/n/nano/nano_8.7.1-1_amd6
 # Release file 
 test_request http://deb.debian.org/debian/dists/stable/Release
 test_request http://deb.debian.org/debian/dists/stable/InRelease
-# Docker passthrough 
-test_request http://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
 # VSCode passthrough
 test_request http://packages.microsoft.com/repos/code/pool/main/c/code/code_1.100.0-1746623151_amd64.deb
-
+# Docker passthrough 
+test_request http://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
+# SSL tunnel 
+test_request https://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
