@@ -7,7 +7,12 @@ variables:
     # Add the VScode repo just to test SSL passthrough
     - wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
     - install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
-    - 'echo -e "Types: deb\nURIs: https://packages.microsoft.com/repos/code\nSuites: stable\nComponents: main\nArchitectures: amd64\nSigned-By: /usr/share/keyrings/microsoft.gpg\n" > /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Types: deb" > /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Suites: stable" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Components: main" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Architectures: amd64" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "URIs: https://packages.microsoft.com/repos/code" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Signed-By: /usr/share/keyrings/microsoft.gpg" >> /etc/apt/sources.list.d/vscode.sources'
     - cat /etc/apt/sources.list.d/vscode.sources
     - apt-get update -y
 
