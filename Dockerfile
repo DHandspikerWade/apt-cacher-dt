@@ -1,4 +1,5 @@
 FROM nginx:1-trixie
+LABEL org.opencontainers.image.source=https://github.com/DHandspikerwade/apt-cacher-dt
 
 RUN \
     apt-get update \
