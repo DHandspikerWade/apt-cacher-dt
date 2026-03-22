@@ -33,4 +33,4 @@ test_request http://packages.microsoft.com/repos/code/pool/main/c/code/code_1.10
 # Docker passthrough 
 test_request http://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
 # SSL tunnel 
-test_request https://download.docker.com/linux/debian/dists/trixie/pool/stable/amd64/containerd.io_1.7.27-1_amd64.deb
+test_request https://ftp.debian.org/debian/pool/main/n/nano/nano-tiny_5.4-2+deb11u3_amd64.deb
