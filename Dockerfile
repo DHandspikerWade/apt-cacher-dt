@@ -8,10 +8,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/*
 
 VOLUME /usr/share/nginx/cache
-COPY stub-*.inc /etc/nginx/conf.d/
-COPY default.conf /etc/nginx/templates/default.conf.template
-COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
-COPY haproxy.cfg /etc/haproxy/
+COPY etc/* /etc/
 COPY *.html /usr/share/nginx/html/
 COPY run.sh /
 
