@@ -8,7 +8,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/*
 
 VOLUME /usr/share/nginx/cache
-COPY etc/* /etc/
+COPY etc /etc
 COPY *.html /usr/share/nginx/html/
 COPY run.sh /
 
