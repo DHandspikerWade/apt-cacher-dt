@@ -1,6 +1,6 @@
 variables:
   - &build_image woodpeckerci/plugin-docker-buildx:5.2.2
-  - &built_image_tag ${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}
+  - &built_image_tag "${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}"
   - &step_events [push, manual]
 
 steps:

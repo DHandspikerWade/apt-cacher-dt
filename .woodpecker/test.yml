@@ -21,7 +21,7 @@ depends_on:
 
 services:
   - name: caching
-    image: registry.ci.spikedhand.com/ci/apt-cacher-dt:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}
+    image: "registry.ci.spikedhand.com/ci/apt-cacher-dt:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}"
     ports:
       - 3142
 
