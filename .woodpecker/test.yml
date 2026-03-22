@@ -1,0 +1,58 @@
+variables:
+  - &step_events [push, manual]
+  - &testing_commands
+    - echo 'Acquire::http::Proxy "http://caching:3142";' > /etc/apt/apt.conf.d/apt-proxy
+    - apt-get update -y
+    - apt install -y nano wget curl ca-certificates apt-transport-https gpg
+    # Add the VScode repo just to test SSL passthrough
+    - wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    - install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
+    - 'echo "Types: deb" > /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Suites: stable" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Components: main" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Architectures: amd64" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "URIs: https://packages.microsoft.com/repos/code" >> /etc/apt/sources.list.d/vscode.sources'
+    - 'echo "Signed-By: /usr/share/keyrings/microsoft.gpg" >> /etc/apt/sources.list.d/vscode.sources'
+    - cat /etc/apt/sources.list.d/vscode.sources
+    - apt-get update -y
+    # Test removing pre-cached package
+    - apt-get remove -y nano && apt-get clean && apt-get install -y nano
+
+depends_on: 
+  - build
+
+services:
+  - name: caching
+    image: "registry.ci.spikedhand.com/ci/apt-cacher-dt:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}"
+    ports:
+      - 3142
+
+steps:
+- name: Smoketest
+  image: handspiker2/ci-tools:base
+  environment:
+    PROXY_HOST: caching:3142
+  commands: 
+    - echo "Waiting for server to be ready"
+    - sleep 20
+    - bash test_urls.sh
+  when:
+    event: *step_events
+
+- name: Debian
+  image: debian:trixie
+  depends_on: 
+    - Smoketest
+  commands: 
+    - <<: *testing_commands
+  when:
+    event: *step_events
+
+- name: Ubuntu
+  image: ubuntu:noble
+  depends_on: 
+    - Smoketest
+  commands: 
+    - <<: *testing_commands
+  when:
+    event: *step_events
