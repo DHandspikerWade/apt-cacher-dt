@@ -1,4 +1,4 @@
-proxy_cache_path /usr/share/nginx/cache keys_zone=apt-cache:5m inactive=250d max_size=8g;
+proxy_cache_path /usr/share/nginx/cache keys_zone=apt-cache:5m inactive=250d max_size=${CACHER_CACHE_SIZE_GB}g;
 log_format cacheable '[$time_local] "$upstream_cache_status" $remote_addr - "$request" $status "$http_referer" $body_bytes_sent "$http_user_agent" ';
 
 resolver ${NAMESERVER} ipv6=off valid=180s;

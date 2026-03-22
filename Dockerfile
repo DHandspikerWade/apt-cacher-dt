@@ -5,7 +5,7 @@ RUN \
     apt-get update \
     && apt-get install -y \
         haproxy \
-        tinyproxy \
+        tinyproxy-bin \
     && rm -rf /var/lib/apt/lists/*
 
 VOLUME /usr/share/nginx/cache
