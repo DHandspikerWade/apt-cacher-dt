@@ -5,7 +5,7 @@ slice 1m;
 
 proxy_ignore_headers Expires Cache-Control;
 
-proxy_cache_valid 200 206 30d;
+proxy_cache_valid 200 206 90d;
 proxy_cache_valid 301 302 30m;
 proxy_cache_valid 404 410 1h;
 
