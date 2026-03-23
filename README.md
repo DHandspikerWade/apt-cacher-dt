@@ -5,8 +5,9 @@
 
 Duct Tape Apt-Cacher is a caching HTTP proxy intended for use with APT package manager. Caches packages for up to 90 days to provide a fast local network cache when installing/updating multiple systems. 
 
+
 <p align="center">
-  ![Gonna use duct tape to do it](https://github.com/adam-p/markdown-here/raw/master/src/.github/ducttape.gif)
+  <img alt="Gonna use duct tape to do it" src="https://raw.githubusercontent.com/DHandspikerWade/apt-cacher-dt/main/.github/ducttape.gif"/>
 </p>
 
 ## Usage
