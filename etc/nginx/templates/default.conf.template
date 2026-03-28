@@ -14,7 +14,9 @@ map $request_uri $needs_bypass {
     ~InRelease 1;
     ~Release 1;
     ~Packages 1;
+    ~Sources 1;
     ~.dsc 1;
+    ~.gpg 1;
 }
 
 server {
