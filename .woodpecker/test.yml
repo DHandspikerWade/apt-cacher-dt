@@ -3,7 +3,7 @@ variables:
   - &testing_commands
     - echo 'Acquire::http::Proxy "http://caching:3142";' > /etc/apt/apt.conf.d/apt-proxy
     - apt-get update -y
-    - apt install -y nano wget curl ca-certificates apt-transport-https gpg
+    - apt-get install -y nano wget curl ca-certificates apt-transport-https gpg
     # Add the VScode repo just to test SSL passthrough
     - wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
     - install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg
