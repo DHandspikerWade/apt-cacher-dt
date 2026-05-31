@@ -15,7 +15,7 @@ steps:
       from_secret: production_user
   commands:
     - skopeo login ghcr.io -u "$$GHCR_USER" -p "$$GHCR_TOKEN"
-    - skopeo copy "docker://registry.ci.spikedhand.com/ci/apt-cacher-dt:$${CI_COMMIT_SHA:0:8}-$${CI_PIPELINE_NUMBER}" docker://ghcr.io/${GHCR_USER}/apt-cacher-dt:${CI_COMMIT_TAG}"
-    - skopeo copy "docker://registry.ci.spikedhand.com/ci/apt-cacher-dt:$${CI_COMMIT_SHA:0:8}-$${CI_PIPELINE_NUMBER}" docker://ghcr.io/${GHCR_USER}/apt-cacher-dt:1"
+    - skopeo copy "docker://registry.ci.spikedhand.com/ci/apt-cacher-dt:$${CI_COMMIT_SHA:0:8}-$${CI_PIPELINE_NUMBER}" "docker://ghcr.io/$${GHCR_USER}/apt-cacher-dt:${CI_COMMIT_TAG}"
+    - skopeo copy "docker://registry.ci.spikedhand.com/ci/apt-cacher-dt:$${CI_COMMIT_SHA:0:8}-$${CI_PIPELINE_NUMBER}" "docker://ghcr.io/$${GHCR_USER}/apt-cacher-dt:1"
   when:
     event: *step_events
