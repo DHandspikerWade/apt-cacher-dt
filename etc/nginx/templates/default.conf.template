@@ -97,11 +97,11 @@ server {
         proxy_ssl_server_name on;
     }
 
-    location /repos/code/pool/ {
+    location /repos/(.*)/pool/ {
         proxy_cache_key "microsoft-$uri-$slice_range";
         include /etc/nginx/conf.d/stub-cache.inc;
 
-        proxy_pass https://packages.microsoft.com/repos/code/pool/;
+        proxy_pass "https://packages.microsoft.com/repos/$1/pool/";
         proxy_set_header Host "packages.microsoft.com";
         proxy_ssl_server_name on;
     }
