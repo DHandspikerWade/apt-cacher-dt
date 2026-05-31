@@ -19,3 +19,5 @@ steps:
     - skopeo copy "docker://registry.ci.spikedhand.com/ci/apt-cacher-dt:$${CI_COMMIT_SHA:0:8}-$${CI_PIPELINE_NUMBER}" docker://ghcr.io/${GHCR_USER}/apt-cacher-dt:1"
   when:
     event: *step_events
+    branch:
+    - ${CI_REPO_DEFAULT_BRANCH}
