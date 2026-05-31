@@ -1,5 +1,5 @@
 variables:
-  - &step_events [push, manual]
+  - &step_events [push, manual, tag]
   - &testing_commands
     - echo 'Acquire::http::Proxy "http://caching:3142";' > /etc/apt/apt.conf.d/apt-proxy
     - apt-get update -y
