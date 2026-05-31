@@ -11,12 +11,12 @@ real_ip_header X-Forwarded-For;
 real_ip_recursive on;
 
 map $request_uri $needs_bypass {
-    ~InRelease 1;
-    ~Release 1;
+    ~InRelease$ 1;
+    ~Release$ 1;
     ~Packages 1;
     ~Sources 1;
-    ~.dsc 1;
-    ~.gpg 1;
+    ~.dsc$ 1;
+    ~.gpg$ 1;
 }
 
 server {
@@ -97,11 +97,20 @@ server {
         proxy_ssl_server_name on;
     }
 
-    location /repos/(.*)/pool/ {
+    location /repos/ {
         proxy_cache_key "microsoft-$uri-$slice_range";
         include /etc/nginx/conf.d/stub-cache.inc;
 
-        proxy_pass "https://packages.microsoft.com/repos/$1/pool/";
+        proxy_pass "https://packages.microsoft.com/repos/";
+        proxy_set_header Host "packages.microsoft.com";
+        proxy_ssl_server_name on;
+    }
+
+    location /debian/ {
+        proxy_cache_key "microsoft-$uri-$slice_range";
+        include /etc/nginx/conf.d/stub-cache.inc;
+
+        proxy_pass "https://packages.microsoft.com/debian/";
         proxy_set_header Host "packages.microsoft.com";
         proxy_ssl_server_name on;
     }
