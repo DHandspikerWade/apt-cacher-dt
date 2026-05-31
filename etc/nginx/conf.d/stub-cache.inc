@@ -19,6 +19,4 @@ proxy_cache_lock on;
 proxy_cache_lock_timeout 10m;
 proxy_cache_lock_age 180s;
 
-# This header should be enabled by default
-add_header X-Cache-Status $upstream_cache_status;
 log_not_found on;
