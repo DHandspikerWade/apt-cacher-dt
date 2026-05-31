@@ -26,6 +26,8 @@ services:
     image: "registry.ci.spikedhand.com/ci/apt-cacher-dt:${CI_COMMIT_SHA:0:8}-${CI_PIPELINE_NUMBER}"
     ports:
       - 3142
+    when:
+      event: *step_events
 
 steps:
 - name: Smoketest
@@ -39,8 +41,8 @@ steps:
   when:
     event: *step_events
 
-- name: Debian
-  image: debian:trixie
+- name: Debian Stable
+  image: debian:stable
   depends_on: 
     - Smoketest
   commands: 
@@ -48,8 +50,26 @@ steps:
   when:
     event: *step_events
 
-- name: Ubuntu
+- name: Debian Testing
+  image: debian:testing
+  depends_on: 
+    - Smoketest
+  commands: 
+    - <<: *testing_commands
+  when:
+    event: *step_events
+
+- name: Ubuntu LTS
   image: ubuntu:noble
+  depends_on: 
+    - Smoketest
+  commands: 
+    - <<: *testing_commands
+  when:
+    event: *step_events
+
+- name: Ubuntu Latest
+  image: ubuntu:latest
   depends_on: 
     - Smoketest
   commands: 

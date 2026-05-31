@@ -9,6 +9,7 @@ steps:
   settings:
     repo: registry.ci.spikedhand.com/ci/apt-cacher-dt
     dockerfile: Dockerfile
+    default_labels: false
     tags: 
       - *built_image_tag
     dry_run: false
