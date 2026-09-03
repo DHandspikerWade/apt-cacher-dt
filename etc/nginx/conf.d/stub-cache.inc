@@ -3,9 +3,8 @@ include /etc/nginx/conf.d/stub-proxy.inc;
 proxy_cache apt-cache;
 slice 1m;
 
-proxy_ignore_headers Expires Cache-Control;
+proxy_ignore_headers Expires Cache-Control Set-Cookie;
 
-proxy_cache_valid 200 206 90d;
 proxy_cache_valid 301 302 30m;
 proxy_cache_valid 404 410 1h;
 
@@ -20,3 +19,5 @@ proxy_cache_lock_timeout 10m;
 proxy_cache_lock_age 180s;
 
 log_not_found on;
+# packages are already compressed so there is little need to add more compression.
+gzip off;

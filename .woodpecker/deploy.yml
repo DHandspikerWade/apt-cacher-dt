@@ -20,3 +20,5 @@ steps:
     - skopeo copy $$BUILT_IMAGE "docker://ghcr.io/$${GHCR_USER}/apt-cacher-dt:1"
   when:
     event: *step_events
+    branch:
+    - ${CI_REPO_DEFAULT_BRANCH}
