@@ -8,8 +8,8 @@ proxy_ignore_headers Expires Cache-Control Set-Cookie;
 proxy_cache_valid 301 302 30m;
 proxy_cache_valid 404 410 1h;
 
-proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
-proxy_cache_revalidate on;
+proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504 http_429;
+proxy_cache_revalidate off;
 proxy_cache_min_uses 1;
 proxy_cache_bypass $needs_bypass;
 
