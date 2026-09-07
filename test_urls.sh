@@ -30,6 +30,7 @@ test_request http://archive.ubuntu.com/ubuntu/pool/main/n/nano/nano_8.7.1-1_amd6
 # Release file 
 test_request http://deb.debian.org/debian/dists/stable/Release
 test_request http://deb.debian.org/debian/dists/stable/InRelease
+test_request http://deb.debian.org/debian/dists/stable/main/binary-amd64/Packages.xz
 # VSCode passthrough
 test_request http://packages.microsoft.com/repos/code/pool/main/c/code/code_1.100.0-1746623151_amd64.deb
 # Docker passthrough 

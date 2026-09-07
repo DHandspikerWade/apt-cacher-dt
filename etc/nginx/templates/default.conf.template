@@ -11,7 +11,6 @@ real_ip_header X-Forwarded-For;
 real_ip_recursive on;
 
 map $request_uri $needs_bypass {
-    ~Packages 1;
     ~Sources 1;
     ~.dsc$ 1;
     ~.gpg$ 1;
@@ -54,6 +53,13 @@ server {
         proxy_cache_valid 200 206 ${CACHER_INDEX_CACHE_TIME};
     }
 
+    location ~* ^(.+/Packages(?:\.(?:gz|tar|xz))?)$ {
+        proxy_pass http://$host/$uri;
+        proxy_cache_key "$host-$uri-$slice_range";
+        include /etc/nginx/conf.d/stub-cache.inc;
+        proxy_cache_valid 200 206 ${CACHER_INDEX_CACHE_TIME};
+    }
+
     location /stats {
         access_log off;
         include /etc/nginx/conf.d/stub-proxy.inc;
@@ -84,6 +90,13 @@ server {
         include /etc/nginx/conf.d/stub-cache.inc;
         proxy_cache_valid 200 206 ${CACHER_INDEX_CACHE_TIME};
     }
+
+    location ~* ^(.+/Packages(?:\.(?:gz|tar|xz))?)$ {
+        proxy_pass http://deb.debian.org$1;
+        proxy_cache_key "debian-$uri-$slice_range";
+        include /etc/nginx/conf.d/stub-cache.inc;
+        proxy_cache_valid 200 206 ${CACHER_INDEX_CACHE_TIME};
+    }
 }
 
 server {
@@ -104,6 +117,14 @@ server {
         include /etc/nginx/conf.d/stub-cache.inc;
         proxy_cache_valid 200 206 ${CACHER_INDEX_CACHE_TIME};
     }
+
+    location ~* ^(.+/Packages(?:\.(?:gz|tar|xz))?)$ {
+        proxy_pass http://security.debian.org$1;
+        proxy_cache_key "debiansecurity-$uri-$slice_range";
+        include /etc/nginx/conf.d/stub-cache.inc;
+        proxy_cache_valid 200 206 ${CACHER_INDEX_CACHE_TIME};
+    }
+    
 }
 
 # microsoft is normally HTTPs so a passthrough for caching vscode
