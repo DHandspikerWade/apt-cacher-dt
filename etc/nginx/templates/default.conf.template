@@ -75,6 +75,8 @@ server {
             cdn.debian.net # Historic primary that is still recommended in some older blog posts and such
             "~^http(?:\.\w{2})?\.debian\.net$" # Deprecated country level mirrors 
             "~^ftp(?:\.\w{2})?\.debian\.net$" # Deprecated country level mirrors 
+            "~^http(?:\.\w{2})?\.debian\.org$" # Deprecated country level mirrors 
+            "~^ftp(?:\.\w{2})?\.debian\.org$" # Deprecated country level mirrors 
             ;
 
     location / {
