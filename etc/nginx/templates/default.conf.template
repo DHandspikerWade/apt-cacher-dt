@@ -73,10 +73,13 @@ server {
     server_name deb.debian.org # Primary CDN domain used in newer installs
             ftp.debian.org # Common secondary
             cdn.debian.net # Historic primary that is still recommended in some older blog posts and such
+            httpredir.debian.org # Discontinued as a redirecting service in 2017
             "~^http(?:\.\w{2})?\.debian\.net$" # Deprecated country level mirrors 
             "~^ftp(?:\.\w{2})?\.debian\.net$" # Deprecated country level mirrors 
             "~^http(?:\.\w{2})?\.debian\.org$" # Deprecated country level mirrors 
             "~^ftp(?:\.\w{2})?\.debian\.org$" # Deprecated country level mirrors 
+            "~^\w{2}\.[^\.]+\.mirror\.debian\.net$" # Deprecated <country>.<arch>.mirror.debian.net
+            "~^[^\.]+-geomirror\.debian\.net$" # Deprecated <arch>-geomirror.debian.net/
             ;
 
     location / {
